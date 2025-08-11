@@ -284,3 +284,29 @@ jobs:
         shell: bash
       - run: ./setup.sh -t -p -l '/tmp/flutter/:channel:-:version:-:hash:-pub-cache-key' | grep '/tmp/flutter/stable-3.7.7-2ad6cd72c040113b47ee9055e722606a490ef0da-pub-cache-key'
         shell: bash
+
+  test_example_screenshot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: ./
+        with:
+          channel: stable
+          flutter-version: 3.24.0
+          cache: true
+      - name: Test example app
+        working-directory: example
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
+        shell: bash
+      - name: Build example app
+        working-directory: example
+        run: |
+          flutter build apk --debug
+          flutter build web --release
+        shell: bash

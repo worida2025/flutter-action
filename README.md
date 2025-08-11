@@ -304,6 +304,38 @@ jobs:
       - run: flutter build macos
 ```
 
+## Screenshot Example
+
+This repository includes a complete example showing how to use `flutter-action` to build Flutter apps and generate screenshots during CI/CD workflows.
+
+See the [`example/`](example/) directory for:
+- A sample Flutter app designed for screenshot testing
+- Integration tests that capture app screenshots
+- GitHub Actions workflow that demonstrates screenshot generation
+- Complete documentation and usage instructions
+
+The example workflow shows how to:
+- Set up Flutter environment using this action
+- Build for multiple platforms (Android APK, Web)
+- Run tests and generate screenshots
+- Upload artifacts including screenshots and builds
+
+```yaml
+- name: Set up Flutter
+  uses: ./
+  with:
+    channel: stable
+    flutter-version: 3.24.0
+    cache: true
+- name: Build and capture screenshots
+  working-directory: example
+  run: |
+    flutter pub get
+    flutter test
+    flutter build apk --debug
+    flutter build web --release
+```
+
 ## Caching
 
 Integration with [`actions/cache`](https://github.com/actions/cache):
