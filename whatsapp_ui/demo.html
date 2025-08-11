@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp UI Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f0f0f0;
+        }
+        
+        .phone-container {
+            max-width: 375px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .status-bar {
+            background: #075E54;
+            height: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .app-bar {
+            background: #075E54;
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .app-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .app-actions {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .tabs {
+            background: #075E54;
+            display: flex;
+            color: white;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom-color: white;
+        }
+        
+        .tab.camera-tab {
+            flex: 0.3;
+        }
+        
+        .chat-list {
+            background: white;
+            height: 400px;
+            overflow-y: auto;
+        }
+        
+        .chat-item {
+            display: flex;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+        
+        .chat-item:hover {
+            background: #f8f8f8;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 12px;
+            position: relative;
+        }
+        
+        .online-indicator {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #25D366;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .chat-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .chat-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .chat-time {
+            font-size: 12px;
+            color: #25D366;
+        }
+        
+        .chat-message {
+            color: #666;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .unread-badge {
+            background: #25D366;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+        }
+        
+        .info-section {
+            padding: 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .info-title {
+            color: #075E54;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .info-text {
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-section">
+        <h1 class="info-title">WhatsApp UI Clone</h1>
+        <p class="info-text">
+            A Flutter application recreating the authentic WhatsApp interface.<br>
+            Complete with chat lists, message bubbles, and tabbed navigation.
+        </p>
+    </div>
+    
+    <div class="phone-container">
+        <div class="status-bar">
+            <span>9:41 AM</span>
+            <span>●●● 🔋 100%</span>
+        </div>
+        
+        <div class="app-bar">
+            <h1 class="app-title">WhatsApp</h1>
+            <div class="app-actions">
+                <span>🔍</span>
+                <span>⋮</span>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab camera-tab">📷</div>
+            <div class="tab active">CHATS</div>
+            <div class="tab">STATUS</div>
+            <div class="tab">CALLS</div>
+        </div>
+        
+        <div class="chat-list">
+            <div class="chat-item">
+                <div class="avatar">
+                    JD
+                    <div class="online-indicator"></div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">John Doe</span>
+                        <span class="chat-time">10:30 AM</span>
+                    </div>
+                    <div class="chat-message">
+                        <span>Hey! How are you doing?</span>
+                        <span class="unread-badge">2</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-item">
+                <div class="avatar">FD</div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Flutter Developers</span>
+                        <span class="chat-time">9:45 AM</span>
+                    </div>
+                    <div class="chat-message">
+                        <span>Alice: Check out this new widget!</span>
+                        <span class="unread-badge">5</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-item">
+                <div class="avatar">SW</div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Sarah Wilson</span>
+                        <span class="chat-time" style="color: #999;">Yesterday</span>
+                    </div>
+                    <div class="chat-message">
+                        <span>Thanks for the help yesterday 😊</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-item">
+                <div class="avatar">WT</div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Work Team</span>
+                        <span class="chat-time">Yesterday</span>
+                    </div>
+                    <div class="chat-message">
+                        <span>Meeting at 3 PM tomorrow</span>
+                        <span class="unread-badge">1</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-item">
+                <div class="avatar">
+                    MJ
+                    <div class="online-indicator"></div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Mike Johnson</span>
+                        <span class="chat-time" style="color: #999;">Tuesday</span>
+                    </div>
+                    <div class="chat-message">
+                        <span>Sure, let's meet for coffee</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fab">✉️</div>
+    </div>
+    
+    <div class="info-section">
+        <p class="info-text">
+            <strong>Features implemented:</strong><br>
+            • Authentic WhatsApp color scheme and design<br>
+            • Chat list with unread message counts<br>
+            • Online status indicators<br>
+            • Tabbed navigation (Camera, Chats, Status, Calls)<br>
+            • Individual chat screens with message bubbles<br>
+            • Sample data for demonstration
+        </p>
+    </div>
+</body>
+</html>

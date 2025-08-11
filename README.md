@@ -5,6 +5,26 @@ macOS.
 
 Originally created by [Alif Rachmawadi]. Maintained by [Bartek Pacia].
 
+## 🆕 WhatsApp UI Demo App
+
+This repository now includes a complete **WhatsApp UI clone** built with Flutter! 
+
+📱 **[View Demo](whatsapp_ui/demo.html)** | 📚 **[Documentation](whatsapp_ui/README.md)** | 🛠️ **[Installation Guide](whatsapp_ui/INSTALLATION.md)**
+
+### Features:
+- ✅ Authentic WhatsApp design and colors
+- ✅ Chat list with unread message counts  
+- ✅ Individual chat screens with message bubbles
+- ✅ Tabbed navigation (Camera, Chats, Status, Calls)
+- ✅ Sample data for demonstration
+- ✅ Responsive UI components
+
+The app is located in the `whatsapp_ui/` directory and serves as a perfect example of what you can build using this Flutter GitHub Action.
+
+---
+
+## Flutter Action Configuration
+
 The following sections show how to configure this action.
 
 ## Specifying Flutter version
