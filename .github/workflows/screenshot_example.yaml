@@ -10,102 +10,102 @@ on:
 jobs:
   screenshot_example:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-        
+
       - name: Set up Flutter
         uses: ./
         with:
           channel: stable
           flutter-version: 3.24.0
           cache: true
-          
+
       - name: Verify Flutter installation
         run: |
           flutter --version
           flutter doctor -v
-          
+
       - name: Get dependencies
         working-directory: example
         run: flutter pub get
-        
+
       - name: Analyze code
         working-directory: example
         run: flutter analyze
-        
+
       - name: Run unit tests
         working-directory: example
         run: flutter test
-        
+
       - name: Build Android APK
         working-directory: example
         run: flutter build apk --debug
-        
+
       - name: Build web app
         working-directory: example
         run: flutter build web --release
-        
+
       - name: Take screenshots using Flutter test
         working-directory: example
         run: |
           # Install chrome dependencies for headless browser
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
-          
+
           # Enable web and desktop platforms
           flutter config --enable-web
-          
+
           # Run golden file tests which will generate image files
           flutter test --update-goldens || echo "Golden tests completed"
-          
+
       - name: Create screenshots directory
         run: mkdir -p example/screenshots
-        
+
       - name: Generate app screenshots using tools
         working-directory: example
         run: |
           # Create a simple script to capture app screens
           cat > take_screenshots.sh << 'EOF'
           #!/bin/bash
-          
+
           echo "Building app for screenshot capture..."
           flutter build web --release
-          
+
           # Create mock screenshots as demonstration
           # In a real scenario, you would use tools like puppeteer, playwright, or similar
           echo "Creating demonstration screenshots..."
-          
+
           # Create a placeholder screenshot showing app structure
           cat > screenshots/app_info.txt << 'APPINFO'
           Flutter Screenshot Example App
           ===============================
-          
+
           This example demonstrates how to use flutter-action to:
           1. Set up Flutter environment in GitHub Actions
-          2. Build Flutter applications  
+          2. Build Flutter applications
           3. Generate screenshots during CI/CD
-          
+
           Generated files:
           - Web build: build/web/
           - Android APK: build/app/outputs/apk/debug/
-          
+
           App features shown in screenshots:
           - Material Design interface
           - Counter functionality
           - Custom screenshot test content
           - Camera icon and styled container
           APPINFO
-          
+
           # List what was built
           echo "Built artifacts:"
           find build -name "*.apk" -o -name "index.html" | head -10
           EOF
-          
+
           chmod +x take_screenshots.sh
           ./take_screenshots.sh
-        
+
       - name: Upload build artifacts and screenshots
         uses: actions/upload-artifact@v4
         if: always()
@@ -116,7 +116,7 @@ jobs:
             example/build/web/
             example/screenshots/
           retention-days: 30
-          
+
       - name: Display results
         run: |
           echo "📸 Screenshot generation completed!"
